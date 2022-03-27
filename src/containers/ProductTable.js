@@ -1,11 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link } from "react-router-dom";
 import api from "../api/api";
 import { getProducts, deleteProduct } from "../redux/actions/productActions";
-import EditProduct from "./EditProduct";
 const ProductTable = () => {
-  const products = useSelector((state) => state.allProducts.products);
+  let products = useSelector((state) => state.allProducts.products);
   const dispatch = useDispatch();
   const fetchProducts = async () => {
     const response = await api.get(`/`).catch((err) => {
@@ -40,14 +39,14 @@ const ProductTable = () => {
           {products &&
             products.length > 0 &&
             products.map((item, index) => (
-              <>
+             
                 <tr key={index}>
                   <td>{item.id}</td>
                   <td>{item.title}</td>
                   <td>{item.category}</td>
                   <td>{item.price}</td>
                   <td className="btn-action">
-                    <Link to={`/admin/edit/${item.id}`}>
+                    <Link to={`/edit/${item.id}`} state = {{from:item}}>
                       <button className="edit">Sửa</button>
                     </Link>
                     <button
@@ -58,13 +57,6 @@ const ProductTable = () => {
                     </button>
                   </td>
                 </tr>
-                <Routes>
-                  <Route
-                    path="edit/:editId"
-                    element={<EditProduct productEdit={item} />}
-                  />
-                </Routes>
-              </>
             ))}
         </tbody>
       </table>

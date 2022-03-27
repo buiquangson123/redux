@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useLocation  } from "react-router-dom";
 import api from "../api/api";
-import { updateProduct } from "../redux/actions/productActions";
+import {  updateProduct } from "../redux/actions/productActions";
 
-const EditProduct = ({ productEdit }) => {
+const EditProduct = () => {
   const { editId } = useParams();
-  console.log(">>proedit", productEdit);
-  const { id, title, price, category } = productEdit;
+  const location = useLocation();
+  let productEdit = location.state.from;
+  console.log(">>pro edit", productEdit);
   const dispatch = useDispatch();
+  const { id, title, price, category } = productEdit;
+
   const [formEdit, setFormEdit] = useState({
     id,
     title,

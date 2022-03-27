@@ -1,9 +1,8 @@
 import React, { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { addProducts } from "../redux/actions/productActions";
-import ProductTable from "./ProductTable";
 import api from "../api/api";
-import { Route, Routes } from "react-router-dom";
+import ProductTable from "./ProductTable";
 
 const ProductAdmin = () => {
   const dispatch = useDispatch();
@@ -97,9 +96,7 @@ const ProductAdmin = () => {
           Thêm
         </button>
       </div>
-      <Routes>
-        <Route path="/*" element={<ProductTable />} />
-      </Routes>
+       <ProductTable></ProductTable>
     </div>
   );
 };

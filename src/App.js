@@ -6,6 +6,7 @@ import "./App.css";
 import ProductDetails from "./containers/ProductDetails";
 import ProductAdmin from "./containers/ProductAdmin";
 import { BrowserRouter } from "react-router-dom";
+import EditProduct from "./containers/EditProduct";
 
 function App() {
   return (
@@ -14,7 +15,8 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" exact element={<ProductListing />} />
-          <Route path="/admin/*" element={<ProductAdmin />} />
+          <Route path="/admin" element={<ProductAdmin />} />
+          <Route path="/edit/:editId" element={<EditProduct />} />
           <Route path="/product/:productId" element={<ProductDetails />} />
           <Route>404 Not Found!</Route>
         </Routes>
